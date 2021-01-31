@@ -24,7 +24,6 @@
 import SwiftUI
 
 @available(iOS 13.0, *)
-
 public extension Color {
     
     /**
@@ -49,6 +48,7 @@ public extension Color {
     }
 }
 
+@available(iOS 13.0, *)
 public extension Color {
     static let systemBlue: Color = Color(UIColor.systemBlue)
     static let systemGreen: Color = Color(UIColor.systemGreen)
