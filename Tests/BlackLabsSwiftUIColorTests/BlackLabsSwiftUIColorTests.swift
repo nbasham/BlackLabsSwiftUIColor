@@ -3,6 +3,7 @@ import SwiftUI
 
 @testable import BlackLabsSwiftUIColor
 
+@available(iOS 13.0, *)
 final class BlackLabsSwiftUIColorTests: XCTestCase {
     func testExample() {
         for colorRecord in colorList {
@@ -24,6 +25,8 @@ final class BlackLabsSwiftUIColorTests: XCTestCase {
         for hexRecord in hexClearList {
             XCTAssertNotNil(Color(hex: hexRecord.hex))
         }
+
+        XCTAssertNotNil(Color.random)
     }
 
     static var allTests = [
@@ -71,6 +74,7 @@ let hexClearList: [HexColorRecord] = [
     HexColorRecord("")
 ]
 
+@available(iOS 13.0, *)
 struct ColorRecord: Identifiable {
     let id: String
     let color: Color
@@ -83,6 +87,7 @@ struct ColorRecord: Identifiable {
     }
 }
 
+@available(iOS 13.0, *)
 let colorList: [ColorRecord] = [
     ColorRecord("systemBlue", Color.systemBlue),
     ColorRecord("systemGreen", Color.systemGreen),

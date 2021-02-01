@@ -50,6 +50,13 @@ public extension Color {
 
 @available(iOS 13.0, *)
 public extension Color {
+    static var random: Color {
+        Color(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1))
+    }
+}
+
+@available(iOS 13.0, *)
+public extension Color {
     static let systemBlue: Color = Color(UIColor.systemBlue)
     static let systemGreen: Color = Color(UIColor.systemGreen)
     static let systemIndigo: Color = Color(UIColor.systemIndigo)
