@@ -188,7 +188,7 @@ public extension UIColor {
         return cssName
     }
     
-    fileprivate static let cssToHexDictionairy: [String: String] = [
+    internal static let cssToHexDictionairy: [String: String] = [
         "CLEAR": "00000000",
         "TRANSPARENT": "00000000",
         "": "00000000",

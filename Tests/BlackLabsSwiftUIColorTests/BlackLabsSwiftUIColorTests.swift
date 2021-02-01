@@ -27,6 +27,10 @@ final class BlackLabsSwiftUIColorTests: XCTestCase {
         }
 
         XCTAssertNotNil(Color.random)
+        
+        for (name, hex) in UIColor.cssToHexDictionairy {
+            XCTAssertNotNil(Color(hex: hex), "Unable to resolve color for web color: '\(name)'.")
+        }
     }
 
     static var allTests = [
