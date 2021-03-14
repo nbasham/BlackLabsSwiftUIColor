@@ -3,8 +3,52 @@ import SwiftUI
 
 @testable import BlackLabsSwiftUIColor
 
-@available(iOS 13.0, *)
 final class BlackLabsSwiftUIColorTests: XCTestCase {
+
+    @available(iOS 14.0, *)
+    func testSampleCode() {
+        let color = Color.red
+        UserDefaults.standard.set(color, forKey: "key")
+        if let savedColor: Color = UserDefaults.standard.color(forKey: "key") {
+            print("Loaded Color from UserDefaults: \(savedColor.hex)")
+        }
+        
+        let colors: [Color] = [.red, .orange, .pink]
+        UserDefaults.standard.set(colors, forKey: "arraykey")
+        if let savedColors: [Color] = UserDefaults.standard.colors(forKey: "arraykey") {
+            print("Loaded [Color] from UserDefaults: \(savedColors.map { $0.hexWithAlpha })")
+        }
+    }
+    @available(iOS 14.0, *)
+    func testSwiftUIColor() {
+        let red = Color.red
+        XCTAssertEqual(red.hex, "fe3a2f")
+        let white = Color.white
+        XCTAssertEqual(white.hex, "fefefe")
+        let black = Color.black
+        XCTAssertEqual(black.hex, "000000")
+        let systemPink = Color.systemPink
+        XCTAssertEqual(systemPink.hex, "fe2c54")
+        
+        let userDefaults = UserDefaults.createCleanForTest()
+        userDefaults.set(Color.black, forKey: "BlackLabsSwiftUIColorTestsBlack")
+        let color = userDefaults.color(forKey: "BlackLabsSwiftUIColorTestsBlack")!
+        XCTAssertNotNil(color)
+        XCTAssertEqual(color.hex, "000000")
+        
+        let colors:[Color] = [.red, .green, .blue]
+        userDefaults.set(colors, forKey: "BlackLabsSwiftUIColorTestsArray")
+        let loadedColors = userDefaults.colors(forKey: "BlackLabsSwiftUIColorTestsArray")!
+        XCTAssertEqual(loadedColors[0].hex, Color.red.hex)
+        XCTAssertEqual(loadedColors[1].hex, Color.green.hex)
+        XCTAssertEqual(loadedColors[2].hex, Color.blue.hex)
+        
+        let uicolor = UIColor.green.withAlphaComponent(0)
+        let greenColor = Color(uicolor)
+        XCTAssertEqual(greenColor.hexWithAlpha, "00ff0000")
+    }
+
+    @available(iOS 13.0, *)
     func testExample() {
         for colorRecord in colorList {
             XCTAssertNotNil(colorRecord.color)
@@ -37,6 +81,17 @@ final class BlackLabsSwiftUIColorTests: XCTestCase {
         ("testExample", testExample),
     ]
 }
+
+extension UserDefaults {
+    private static var index = 0
+    static func createCleanForTest(label: StaticString = #file) -> UserDefaults {
+        index += 1
+        let suiteName = "UnitTest-UserDefaults-\(label)-\(index)"
+        UserDefaults().removePersistentDomain(forName: suiteName)
+        return UserDefaults(suiteName: suiteName)!
+    }
+}
+
 
 struct HexColorRecord: Identifiable {
     let id: UUID

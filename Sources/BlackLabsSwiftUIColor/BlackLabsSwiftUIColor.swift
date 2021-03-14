@@ -23,6 +23,16 @@
 // THE SOFTWARE.
 import SwiftUI
 
+@available(iOS 14.0, *)
+public extension Color {
+    var hex: String { UIColor(self).hex }
+    var hexWithAlpha: String {UIColor(self).hexWithAlpha }
+    
+    func hexDescription(_ includeAlpha: Bool = false) -> String {
+        UIColor(self).hexDescription(includeAlpha)
+    }
+}
+
 @available(iOS 13.0, *)
 public extension Color {
     
@@ -110,6 +120,9 @@ public extension UIColor {
         self.init(red:UIColorMasks.redValue(c), green:UIColorMasks.greenValue(c), blue:UIColorMasks.blueValue(c), alpha:UIColorMasks.alphaValue(c))
     }
     
+    var hex: String { hexDescription(false) }
+    var hexWithAlpha: String { hexDescription(true) }
+
     /**
      Returns a hex equivalent of this `UIColor`.
      
