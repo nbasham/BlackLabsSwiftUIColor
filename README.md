@@ -11,7 +11,7 @@ If you are using Xcode 11 or later:
 4. Enter: https://github.com/nbasham/BlackLabsSwiftUIColor/
 
 ### UserDefaults
-Works with `UIColor` and `Color`. `Color` is determined at runtime. This implementation grags the current .light/.dark color and save's it, the color being saved will loose the .light/.dark color not currently in use. `UIColor` uses `UserDefaults.standard.uicolor(forKey)` and `UserDefaults.standard.uicolors(forKey)` API.
+Works with `UIColor` and `Color`. `Color` is determined at runtime. This implementation grabs the current .light/.dark color and saves it, the color being saved will loose the .light/.dark color not currently in use. `UIColor` uses `UserDefaults.standard.uicolor(forKey)` and `UserDefaults.standard.uicolors(forKey)` API.
 ```swift
 let color = Color.red
 UserDefaults.standard.set(color, forKey: "key")
