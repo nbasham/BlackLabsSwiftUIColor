@@ -174,7 +174,7 @@ public extension UIColor {
         guard var hexString = hex else {
             return "00000000"
         }
-        if let cssColor = cssToHexDictionairy[hexString.uppercased()] {
+        if let cssColor = cssToHexDictionary[hexString.uppercased()] {
             return cssColor.count == 8 ? cssColor : cssColor + "ff"
         }
         if hexString.hasPrefix("#") {
@@ -195,13 +195,13 @@ public extension UIColor {
      */
     fileprivate static func hexFromCssName(_ cssName: String) -> String {
         let key = cssName.uppercased()
-        if let hex = cssToHexDictionairy[key] {
+        if let hex = cssToHexDictionary[key] {
             return hex
         }
         return cssName
     }
     
-    internal static let cssToHexDictionairy: [String: String] = [
+    internal static let cssToHexDictionary: [String: String] = [
         "CLEAR": "00000000",
         "TRANSPARENT": "00000000",
         "": "00000000",
